@@ -1,5 +1,5 @@
 ---
-author: littichokha
+author: Sayan Chowdhury
 categories:
 - Blog Posts
 date: '2021-12-25'
@@ -20,25 +20,25 @@ title: Flatcar Container Linux on Raspberry Pi
 
 {{< figure src="/images/2021-12-24-flatcar-raspberry-pi.jpg" alt="Fresh raspberries from a Canadian Local Market." position="center" >}}
 
-[Flatcar Container Linux](https://www.flatcar-linux.org/) recently announced the [Stable support for ARM64](https://twitter.com/flatcar/status/1471487489705582597). 
+[Flatcar Container Linux](https://www.flatcar-linux.org/) recently announced the [Stable support for ARM64](https://twitter.com/flatcar/status/1471487489705582597).
 
 Perfectly timed! I had a Raspberry Pi 4 lying around and had just ordered a few more to set up a home lab during the holidays. The newer Pis are yet to arrive, so better utilize the time writing a walkthrough on how to use Flatcar Container Linux on your Pis.
 
 # Hardware Requirements
 - Goes without saying, a Raspberry Pi 4
-- Form of storage, either USB and/or SD card. USB 3.0 drive recommended because of the much better performance for the price. 
+- Form of storage, either USB and/or SD card. USB 3.0 drive recommended because of the much better performance for the price.
 - Display (via micro HDMI/HDMI/Serial Cables), keyboard
 
 ---
 
-> ⚠️ WARNING ⚠️  
+> ⚠️ WARNING ⚠️
 > The UEFI firmware used in this guide is an [_UNOFFICIAL_ firmware](https://rpi4-uefi.dev/faq/#Is_this_an_official_Raspberry_Pi_Foundation_project). There is a possibility of damage caused due to the usage of this firmware.
 > The author of this article would not be liable for any damage caused. Please follow this article at your own risk.
 
 ---
 
 # Update the EEPROM
-The Raspberry PI 4 use an EEPROM to boot the system. Before proceeding ahead, it is recommended to update the EEPROM. Raspberry Pi OS automatically updates the bootloader on system boot. In case you are using Raspberry Pi OS already, then the bootloader may be already updated. 
+The Raspberry PI 4 use an EEPROM to boot the system. Before proceeding ahead, it is recommended to update the EEPROM. Raspberry Pi OS automatically updates the bootloader on system boot. In case you are using Raspberry Pi OS already, then the bootloader may be already updated.
 
 For manually updating the EEPROM, you can either use the Raspberry Pi Imager or the raspi-config. The former is the recommended method in the [Raspberry Pi documentation](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-4-boot-eeprom).
 
@@ -46,7 +46,7 @@ We will also see later how the RPi4 UEFI firmware needs a recent version of EEPR
 
 ### Using the Raspberry Pi Imager (Recommended)
 
-- Install the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) software. You can also look for the software in your distribution repository.  
+- Install the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) software. You can also look for the software in your distribution repository.
 Being a Fedora user I installed the software using `dnf`
 
 ```bash
@@ -91,11 +91,11 @@ sudo rpi-eeprom-update
 
 - Install the update
 ```bash
-# The update is pulled from the `default` release channel. 
+# The update is pulled from the `default` release channel.
 # The other available channels are: latest and beta
 # You can update the channel by updating the value of
 # `FIRMWARE_RELEASE_STATUS` in the `/etc/default/rpi-eeprom-update`
-# file. This is useful usually in case when you want 
+# file. This is useful usually in case when you want
 # features yet to be made available on the default channel.
 
 # Install the update
@@ -106,7 +106,7 @@ sudo rpi-eeprom-update -a
 sudo reboot
 ```
 
-# Installing Flatcar 
+# Installing Flatcar
 
 ### Install `flatcar-install` script
 
@@ -115,7 +115,7 @@ Flatcar provides a simple installer script that helps install Flatcar Container 
 ```bash
 mkdir -p ~/.local/bin
 # You may also add `PATH` export to your shell profile, i.e bashrc, zshrc etc.
-export PATH=$PATH:$HOME/.local/bin 
+export PATH=$PATH:$HOME/.local/bin
 
 curl -LO https://raw.githubusercontent.com/flatcar-linux/init/flatcar-master/bin/flatcar-install
 chmod +x flatcar-install
@@ -127,7 +127,7 @@ mv flatcar-install ~/.local/bin
 Now that we have the `flatcar-install` installed in our host machine. We would go ahead and install the Flatcar Container Linux image on the target device.
 The target device could be a USB or SD Card. In my case, I reused the existing SD Card which I used in the previous steps. You can use a separate storage device as well.
 
-The options that we will be using with the scripts are:  
+The options that we will be using with the scripts are:
 ```bash
 # -d DEVICE   Install Flatcar Container Linux to the given device.
 # -C CHANNEL  Release channel to use
@@ -139,7 +139,7 @@ The options that we will be using with the scripts are:
 - The device would be the target device that you would like to use. You can use the `lsblk` command to find the appropriate disk. Here, I'm using `/dev/sda` which was in my case.
 - With the given values of `channel` and `board`, the script would download the image, verify it with gpg, and then copy it bit for bit to disk.
 - In our case, Flatcar does not yet ship Raspberry PI specific OEM images yet so the value will be an empty string `''`.
-- Pass the Ignition file, `config.json` in my case, to provision the Pi during boot. 
+- Pass the Ignition file, `config.json` in my case, to provision the Pi during boot.
 ```json
 {
   "ignition": {
@@ -188,7 +188,7 @@ The options that we will be using with the scripts are:
 }
 ```
 
-Write away! 
+Write away!
 ```
 sudo flatcar-install -d /dev/sda -C stable -B arm64-usr -o '' -i config.json
 ```
@@ -225,11 +225,11 @@ sudo umount /tmp/efipartition
 ```
 - Remove the `USB`/`SD` from the host device and attach it into the Raspberry Pi 4 and boot.
 
-_Voilà_! In no time, your Raspberry Pi would boot and present you with a Flatcar Container Linux prompt. 
+_Voilà_! In no time, your Raspberry Pi would boot and present you with a Flatcar Container Linux prompt.
 
 
 # Further Reading
-- [rpi4-uefi.dev](https://rpi4-uefi.dev/) - RPi4 UEFI Firmware Official Website 
+- [rpi4-uefi.dev](https://rpi4-uefi.dev/) - RPi4 UEFI Firmware Official Website
 - [Raspberry Pi](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-4-boot-eeprom) documentation
 
 ---
