@@ -24,13 +24,13 @@ languages:
         weight: 1
         menu:
             main:
-                - name: Archive
+                - name: /archive
                   url: /archives/
                   weight: 5
-                - name: Search
+                - name: /search
                   url: /search/
                   weight: 10
-                - name: Tags
+                - name: /tags
                   url: /tags/
                   weight: 10
                 #- name: Categories
