@@ -99,7 +99,7 @@ params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
     description: "Scribbles of a Computer Programmer"
     author:
-    - Sayan Chowdhury
+    - littichokha
     # author: ["Me", "You"] # multiple authors
     DateFormat: "2006-01-02"
 
@@ -163,7 +163,7 @@ params:
          keys: ["title", "permalink", "summary", "content"]
 
     editPost:
-        URL: "https://github.com/sayanchowdhury/journalctl.dev/tree/main/content"
+        URL: "https://github.com/littichokha/journalctl.dev/tree/main/content"
         Text: "Suggest Changes" # edit text
         appendFilePath: true # to append file path to Edit link
 
