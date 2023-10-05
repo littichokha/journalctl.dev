@@ -33,9 +33,6 @@ languages:
                 - name: /tags
                   url: /tags/
                   weight: 10
-                #- name: Categories
-                  #url: /categories/
-                  #weight: 10
 
     #fr:
         #languageName: ":fr:"
