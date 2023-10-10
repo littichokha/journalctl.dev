@@ -76,19 +76,6 @@ languages:
                 #- name: NullLink3
                   #url: "#"
 
-    #fa:
-        #languagedirection: rtl
-        #weight: 3
-        #title: PaperMod RTL
-        #homeInfoParams:
-            #Title: "Hi there \U0001F44B"
-            #Content: Welcome to RTL layout
-        #menu:
-            #main:
-                #- name: Tags
-                  #url: tags
-                  #weight: 10
-
 outputs:
     home:
         - HTML
