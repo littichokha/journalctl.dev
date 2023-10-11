@@ -33,22 +33,6 @@ languages:
                 - name: /tags
                   url: /tags/
                   weight: 10
-                #- name: Categories
-                  #url: /categories/
-                  #weight: 10
-
-    #fa:
-        #languagedirection: rtl
-        #weight: 3
-        #title: PaperMod RTL
-        #homeInfoParams:
-            #Title: "Hi there \U0001F44B"
-            #Content: Welcome to RTL layout
-        #menu:
-            #main:
-                #- name: Tags
-                  #url: tags
-                  #weight: 10
 
 outputs:
     home:
@@ -132,10 +116,6 @@ params:
          text: "Home"
          icon: icon.png
          iconHeight: 35
-
-    # analytics:
-    #     google:
-    #         SiteVerificationTag: "XYZabc"
 
     # assets:
     #     favicon: "<link / abs url>"
